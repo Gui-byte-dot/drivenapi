@@ -2,12 +2,14 @@
   "compilerOptions":{
     "outDir":"dist",
     "esModuleInterop":true,
-    "module":"es6",
+    "module":"CommonJS",
     "moduleResolution": "Node",
   },
   "ts-node": {
     "esm":true
   }
 
-}
+} 
+ 
+
 

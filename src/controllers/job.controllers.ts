@@ -1,6 +1,7 @@
 import { Request,Response } from "express";
-import { findMany, insertUnique} from "../repositories/book.repository.js";
-import {Book, BookEntity } from "../protocols/book.js";
+import { findMany, upsert} from "../repositories/job.repository";
+import {NewJob } from "../protocols/job";
+
 // const jobs: (number | string | boolean)[] = ['Tech', false, 5];
 // const bolinha: string = "Gui";
 
@@ -34,34 +35,33 @@ import {Book, BookEntity } from "../protocols/book.js";
 //         skills:['olá', 1],
 //         salary:5
 // }];
-import { BookSchema } from "../schemas/book.schema.js";
-
+import { JobSchema } from "../schemas/job.schema";
 
 const nome: number = 1;
 
 
 
 async function insert(req:Request, res:Response){
-    const newJob = req.body as Book;
+    const newJob = req.body as NewJob;
 
-    const {error} = BookSchema.validate(newJob);
+    const {error} = JobSchema.validate(newJob);
     if(error){
         return res.status(400).send({
             message:error.message
         })
     }
 
-    const resultado = await insertUnique(newJob);
+    const resultado = await upsert(newJob);
     
     return res.send(resultado)
 }
 
-async function listAllBooks(req:Request, res:Response){
+async function listAllJobs(req:Request, res:Response){
     const resultado = await findMany();
 
-    return res.send(resultado.rows)
+    return res.send(resultado)
 }
 export {
-    listAllBooks,
+    listAllJobs,
     insert
 }

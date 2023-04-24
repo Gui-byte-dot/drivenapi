@@ -1,6 +1,7 @@
 import Joi from "joi";
 
-export const BookSchema = Joi.object({
+export const JobSchema = Joi.object({
+    id:Joi.number(),
     title:Joi.string().required(),
     price:Joi.number().required(),
 })

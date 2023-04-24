@@ -1,13 +1,15 @@
 import express from 'express';
-import { listAllBooks, insert} from './controllers/books.controllers.js';
+import { listAllJobs, insert} from './controllers/job.controllers';
+import authentication from './middlewares/authentication';
 const server = express();
 server.use(express.json());
 
 
-server.get('/books', listAllBooks);
-server.post('/books', insert);
+server.get('/jobs',authentication, listAllJobs);
+server.post('/jobs', insert);
 
 server.listen(4000, () => {
   console.log('Tá executando...');
 })
 
+export default server;

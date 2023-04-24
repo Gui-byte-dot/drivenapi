@@ -1,5 +1,5 @@
-import { Book } from "../protocols/book.js";
-const jober: Book[] = [
+import { Job } from "../protocols/job";
+const jober: Job[] = [
     {
         title:"oi",
         price:5
